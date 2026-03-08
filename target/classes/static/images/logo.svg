@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Shadow (Dark Gray) -->
-  <polygon points="22,48 42,48 54,61 93,20 48,76" fill="#4a4a4a"/>
-  <!-- Main shape (Vibrant Red) -->
-  <polygon points="20,45 40,45 52,58 91,17 46,73" fill="#e3000f"/>
-</svg>
