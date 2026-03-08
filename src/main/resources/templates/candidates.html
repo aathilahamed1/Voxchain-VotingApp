@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates - VoxChain</title>
+    <meta name="description" content="View all candidates in the VoxChain blockchain election.">
+    <meta name="contract-address" th:content="${contractAddress}" content="">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img th:src="@{/images/logo.svg}" alt="VoxChain Logo" class="logo-icon">
+            <div class="brand-text">Vox<span>Chain</span></div>
+        </a>
+        <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+        <ul class="navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/connect">Connect</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/candidates" class="active">Candidates</a></li>
+            <li><a href="/vote">Vote</a></li>
+            <li><a href="/results">Results</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li>
+                <div class="wallet-badge" style="display:none;">
+                    <span class="dot"></span>
+                    <span class="wallet-badge-text"></span>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>👥 Candidates</h1>
+        <p>Meet the candidates running in the current election</p>
+    </div>
+
+    <!-- Candidates Section -->
+    <section class="section">
+        <div class="container">
+            <div th:if="${#lists.isEmpty(candidates)}" class="empty-state">
+                <div class="icon">👥</div>
+                <h3>No Candidates Yet</h3>
+                <p>Candidates will appear here once the admin adds them.</p>
+            </div>
+
+            <div class="candidate-grid" th:unless="${#lists.isEmpty(candidates)}">
+                <div class="candidate-card" th:each="candidate : ${candidates}">
+                    <div class="candidate-avatar" th:text="${candidate.name.substring(0,1).toUpperCase()}">A</div>
+                    <h3 th:text="${candidate.name}">Candidate Name</h3>
+                    <span class="candidate-party" th:if="${candidate.party}" th:text="${candidate.party}">Party</span>
+                    <p class="description" th:if="${candidate.description}" th:text="${candidate.description}">
+                        Description</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="/vote" class="btn btn-primary btn-lg"><img th:src="@{/images/logo.svg}" class="inline-logo"
+                        alt="logo"> Go to Voting Page</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 VoxChain – Blockchain Voting System</p>
+    </footer>
+
+    <script th:src="@{/js/web3-integration.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

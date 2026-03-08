@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Voter - VoxChain</title>
+    <meta name="description"
+        content="Register as a voter in the VoxChain blockchain voting system using your wallet address.">
+    <meta name="contract-address" th:content="${contractAddress}" content="">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img th:src="@{/images/logo.svg}" alt="VoxChain Logo" class="logo-icon">
+            <div class="brand-text">Vox<span>Chain</span></div>
+        </a>
+        <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+        <ul class="navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/connect">Connect</a></li>
+            <li><a href="/register" class="active">Register</a></li>
+            <li><a href="/candidates">Candidates</a></li>
+            <li><a href="/vote">Vote</a></li>
+            <li><a href="/results">Results</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li>
+                <div class="wallet-badge" style="display:none;">
+                    <span class="dot"></span>
+                    <span class="wallet-badge-text"></span>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>📝 Voter Registration</h1>
+        <p>Register your wallet address to participate in the election</p>
+    </div>
+
+    <!-- Registration Section -->
+    <section class="section">
+        <div class="register-section">
+            <div class="card">
+                <div class="card-icon" style="margin: 0 auto 1.5rem;">📝</div>
+                <h3 style="text-align: center; font-size: 1.4rem; margin-bottom: 0.5rem;">Register to Vote</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">Connect your MetaMask wallet and register your
+                    unique wallet address. Each address can only register once.</p>
+
+                <div id="not-connected-msg" class="empty-state">
+                    <div class="icon">🦊</div>
+                    <h3>Wallet Not Connected</h3>
+                    <p>Please connect your MetaMask wallet first.</p>
+                    <button class="btn btn-primary" onclick="connectWallet()" style="margin-top: 1rem;">Connect
+                        Wallet</button>
+                </div>
+
+                <div id="connected-form" style="display: none;">
+                    <div class="form-group">
+                        <label>Wallet Address</label>
+                        <input type="text" class="form-control" id="wallet-display" readonly
+                            style="background: var(--primary-ghost); color: var(--primary); font-family: monospace;">
+                    </div>
+
+                    <button class="btn btn-primary btn-lg" onclick="registerVoter()" style="width: 100;">
+                        ✅ Register as Voter
+                    </button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>⚡ Quick Steps</h3>
+                <ol style="color: var(--text-muted); padding-left: 1.2rem; line-height: 2;">
+                    <li>Connect your MetaMask wallet</li>
+                    <li>Click "Register as Voter"</li>
+                    <li>Your wallet address is stored securely</li>
+                    <li>Proceed to the voting page once election begins</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 VoxChain – Blockchain Voting System</p>
+    </footer>
+
+    <script th:src="@{/js/web3-integration.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                const wallet = getConnectedWallet();
+                if (wallet) {
+                    document.getElementById('not-connected-msg').style.display = 'none';
+                    document.getElementById('connected-form').style.display = 'block';
+                    document.getElementById('wallet-display').value = wallet;
+                }
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

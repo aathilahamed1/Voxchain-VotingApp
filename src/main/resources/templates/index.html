@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxChain - Blockchain Voting System</title>
+    <meta name="description"
+        content="Secure, transparent, blockchain-based decentralized voting system powered by Ethereum smart contracts and MetaMask authentication.">
+    <meta name="contract-address" th:content="${contractAddress}" content="">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img th:src="@{/images/logo.svg}" alt="VoxChain Logo" class="logo-icon">
+            <div class="brand-text">Vox<span>Chain</span></div>
+        </a>
+        <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+        <ul class="navbar-nav">
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/connect">Connect</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/candidates">Candidates</a></li>
+            <li><a href="/vote">Vote</a></li>
+            <li><a href="/results">Results</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li>
+                <div class="wallet-badge" style="display:none;">
+                    <span class="dot"></span>
+                    <span class="wallet-badge-text"></span>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-new">
+        <div class="hero-bg-glow"></div>
+        <div class="hero-content-new">
+            <div class="hero-badge">Enterprise Voting Infrastructure</div>
+            <h1 class="hero-title">
+                The Gold Standard in<br>
+                <span class="gradient-red">Digital Governance.</span>
+            </h1>
+            <p class="hero-subtitle">
+                VoxChain delivers end-to-end verifiable, immutable, and fully decentralized voting solutions for modern
+                enterprises, DAOs, and global communities.
+            </p>
+            <div class="hero-actions">
+                <a href="/vote" class="btn-new btn-primary-new">Cast Your Vote <span class="arrow">→</span></a>
+                <a href="/connect" class="btn-new btn-secondary-new">Connect Wallet</a>
+            </div>
+        </div>
+        <div class="hero-visual-new">
+            <div class="glass-dashboard-preview">
+                <div class="glass-header">
+                    <div class="glass-dots"><span></span><span></span><span></span></div>
+                    <div class="glass-title">Live Election Telemetry</div>
+                </div>
+                <div class="glass-body">
+                    <div class="stat-row">
+                        <span class="stat-label">Network Status</span>
+                        <span class="stat-val status-green">● Operational</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Consensus</span>
+                        <span class="stat-val">Ethereum PoS</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Security Protocol</span>
+                        <span class="stat-val">Military Grade Cryptography</span>
+                    </div>
+                    <div class="progress-track" style="margin-top: 1.5rem;">
+                        <span
+                            style="font-size: 0.7rem; color: #a3a3a3; text-transform: uppercase; letter-spacing: 1px;">Integrity
+                            Verification</span>
+                        <div class="progress-bg"
+                            style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 6px;">
+                            <div class="progress-fill"
+                                style="width: 100%; height: 100%; background: #E3000F; border-radius: 4px; box-shadow: 0 0 10px rgba(227, 0, 15, 0.5);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img th:src="@{/images/logo.svg}" class="floating-giant-logo" alt="VoxChain Logo">
+        </div>
+    </section>
+
+    <!-- Trusted Partners -->
+    <section class="ticker-section">
+        <p class="ticker-heading">TRUSTED BY INNOVATIVE ORGANIZATIONS WORLDWIDE</p>
+        <div class="ticker-logos">
+            <span class="ticker-item">Acme Corp</span>
+            <span class="ticker-item">GlobalTech</span>
+            <span class="ticker-item">Nexus Industries</span>
+            <span class="ticker-item">Vanguard Solutions</span>
+            <span class="ticker-item">Stark Enterprises</span>
+        </div>
+    </section>
+
+    <!-- Value Propositions -->
+    <section id="solutions" class="bento-grid-section">
+        <div class="container">
+            <div class="bento-header">
+                <h2>Uncompromising Security.<br>Elegant Experience.</h2>
+            </div>
+            <div class="bento-grid">
+                <div class="bento-card bento-large bento-dark">
+                    <div class="bento-icon">🛡️</div>
+                    <h3>Cryptographic Integrity</h3>
+                    <p>Every ballot is cryptographically hashed and sealed on the Ethereum Mainnet, providing absolute
+                        mathematical proof of zero tampering and ensuring auditability at any scale.</p>
+                </div>
+                <div class="bento-card bento-light">
+                    <div class="bento-icon">⚡</div>
+                    <h3>High Throughput</h3>
+                    <p>Optimized smart contracts guarantee instantaneous confirmation and reliability for large-scale
+                        enterprise elections.</p>
+                </div>
+                <div class="bento-card bento-light">
+                    <div class="bento-icon">🌐</div>
+                    <h3>Global Accessibility</h3>
+                    <p>Vote securely from anywhere in the world using standard Web3 wallet infrastructure without
+                        friction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 VoxChain – Blockchain Voting System | Powered by <a href="#">Ethereum</a></p>
+    </footer>
+
+    <script th:src="@{/js/web3-integration.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+</body>
+
+</html>
