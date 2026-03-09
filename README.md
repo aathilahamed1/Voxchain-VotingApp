@@ -1,4 +1,4 @@
-# 🗳️ DecentraVote — Decentralized Blockchain Voting System
+Voxchain — Decentralized Blockchain Voting System
 
 A secure, transparent, blockchain-based voting system built with **Spring Boot**, **MySQL**, **Solidity Smart Contracts**, and **MetaMask** wallet authentication.
 
